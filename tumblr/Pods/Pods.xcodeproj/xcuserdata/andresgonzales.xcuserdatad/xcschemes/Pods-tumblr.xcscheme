@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "66B5A916385E9C9C5440E9A9684E9F86"
-               BuildableName = "Pods_tumblrTests.framework"
-               BlueprintName = "Pods-tumblrTests"
+               BlueprintIdentifier = "B868E29481E610F551F9EF05E0DB1E22"
+               BuildableName = "Pods_tumblr.framework"
+               BlueprintName = "Pods-tumblr"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -42,17 +40,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "66B5A916385E9C9C5440E9A9684E9F86"
-            BuildableName = "Pods_tumblrTests.framework"
-            BlueprintName = "Pods-tumblrTests"
-            ReferencedContainer = "container:Pods.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

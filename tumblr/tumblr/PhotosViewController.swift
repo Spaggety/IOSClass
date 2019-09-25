@@ -18,7 +18,9 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
         let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoCell", for: indexPath) as! PhotoCell
+        
         let post = posts[indexPath.row]
         // 1.            // 2.          // 3.
         if let photos = post["photos"] as? [[String: Any]] {
@@ -57,7 +59,7 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
                 print(error.localizedDescription)
             } else if let data = data,
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                print(dataDictionary)
+                //print(dataDictionary)
 
                 // TODO: Get the posts and store in posts property
                 // Get the dictionary from the response key
@@ -72,14 +74,28 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        // Pass the selected object to the new view controller
+        let cell = sender as! UITableViewCell
+        
+        if let indexPath = tableView.indexPath(for: cell){
+            let photo = posts[indexPath.row]
+            if let photoDetail = segue.destination as? PhotoDetailsViewController{
+                photoDetail.photo = photo
+                
+            }
+        }
+        
+        //tableView.deselectRow(at: indexPath, animated: true)
+        
+        
     }
-    */
+    
+    
 
 }
