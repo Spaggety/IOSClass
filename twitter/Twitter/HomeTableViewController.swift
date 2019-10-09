@@ -15,6 +15,28 @@ class HomeTableViewController: UITableViewController {
     var numberOfTweet: Int!
     let myRefreshControl = UIRefreshControl()
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        loadTweet()
+        
+        myRefreshControl.addTarget(self, action: #selector(loadTweet), for: .valueChanged)
+        tableView.refreshControl = myRefreshControl
+        
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 130
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //super.viewDidAppear(animated)
+        self.loadTweet()
+    }
+    
     @objc func loadTweet(){
         
         numberOfTweet = 20
@@ -52,7 +74,7 @@ class HomeTableViewController: UITableViewController {
             
         })
     }
-    
+
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row + 1 == tweetArray.count{
@@ -60,18 +82,9 @@ class HomeTableViewController: UITableViewController {
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        loadTweet()
-        
-        myRefreshControl.addTarget(self, action: #selector(loadTweet), for: .valueChanged)
-        tableView.refreshControl = myRefreshControl
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
+
+    
 
     @IBAction func onLogout(_ sender: Any) {
         TwitterAPICaller.client?.logout()
@@ -95,6 +108,9 @@ class HomeTableViewController: UITableViewController {
             cell.profileimageView.image = UIImage(data: imageData)
         }
         
+        cell.setFavorite(tweetArray[indexPath.row]["favorited"] as! Bool)
+        cell.tweetId = tweetArray[indexPath.row]["id"] as! Int
+        cell.setRetweeted(tweetArray[indexPath.row]["retweeted"] as! Bool)
         
         return cell
     }
